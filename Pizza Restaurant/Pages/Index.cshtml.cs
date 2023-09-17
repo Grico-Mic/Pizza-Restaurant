@@ -1,25 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Pizza_Restaurant.Mapping;
+using Pizza_Restaurant.Services.Interfaces;
+using Pizza_Restaurant.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Pizza_Restaurant.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        //private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        //public IndexModel(ILogger<IndexModel> logger)
+        //{
+        //    _logger = logger;
+        //}
+
+        private readonly IOfferService _offerService;
+
+        public IndexModel(IOfferService offerService)
         {
-            _logger = logger;
+            _offerService = offerService;
         }
 
+
+        public List<OfferViewModel> Offers { get; set; }
         public void OnGet()
         {
-
+            var offers = _offerService.GetAllValid();
+            Offers = offers.Select(x => x.ToViewModel()).ToList();
         }
     }
 }

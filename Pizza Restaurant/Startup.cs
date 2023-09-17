@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Pizza_Restaurant.Repositories;
+using Pizza_Restaurant.Repositories.Interfaces;
+using Pizza_Restaurant.Services;
+using Pizza_Restaurant.Services.Interfaces;
 
 namespace Pizza_Restaurant
 {
@@ -23,7 +23,15 @@ namespace Pizza_Restaurant
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<PizzaRestaurantDbContex>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("PizzaRestaurantDb"));
+            });
+
             services.AddRazorPages();
+
+            services.AddTransient<IOfferService, OfferService>();
+            services.AddTransient<IOffersRepository, OffersRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

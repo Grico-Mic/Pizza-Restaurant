@@ -1,0 +1,47 @@
+﻿@page
+@model Pizza_Restaurant.Pages.MenuModel
+@{
+    ViewData["Title"] = "Menu";
+}
+
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    @section Styles{
+        <link href="~/css/menu.css" rel="stylesheet" />>
+    }
+    <title></title>
+</head>
+<body>
+   
+   
+
+    
+
+
+    <div class="row">
+        @foreach (var item in Model.MenuItems)
+        {
+            <div class="col-md-6">
+                <div class="card mb-3 border-0 menuItem">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img class="rounded-circle menuItemImage" src="@item.ImageURL" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Name</h5>
+                                <p class="card-text">@item.Descripton</p>
+                                <p class="card-text"><small class="text-muted">@item.Price @item.Currency</small></p>
+                                <a asp-page="Details" asp-route-id="@item.Id">See more...</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</body>
+</html>

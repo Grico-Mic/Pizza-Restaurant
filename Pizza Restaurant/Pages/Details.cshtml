@@ -1,0 +1,27 @@
+﻿@page
+@model Pizza_Restaurant.Pages.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+@if (Model.MenuItem != null)
+{
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@Model.MenuItem.Name</h5>
+            <p class="card-text">@Model.MenuItem.Descripton  </p>
+            <p class="card-text"><small class="text-muted">@Model.MenuItem.Price @Model.MenuItem.Currency</small></p>
+        </div>
+        <img src="@Model.MenuItem.ImageURL" class="card-img-bottom" alt="...">
+    </div>
+}
+
+
+@if (Model.ErrorMessage != null)
+{
+    <h2 class="text-danger">@Model.ErrorMessage</h2>
+}
+
+

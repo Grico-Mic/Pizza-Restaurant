@@ -1,9 +1,5 @@
 ﻿using Pizza_Restaurant.Models;
 using Pizza_Restaurant.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Pizza_Restaurant.Mapping
 {
@@ -18,5 +14,21 @@ namespace Pizza_Restaurant.Mapping
                 ValidTo = entity.ValidTo
             };
         }
+
+        public static MenuItemViewModel ToViewModel(this MenuItem entity)
+        {
+            return new MenuItemViewModel()
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                ImageURL = entity.ImageURL,
+                Descripton = entity.Description,
+                Price = entity.Price,
+                Currency = entity.Currency
+
+            };
+        }
+
+       
     }
 }

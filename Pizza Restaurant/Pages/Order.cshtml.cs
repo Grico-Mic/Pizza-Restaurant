@@ -9,9 +9,11 @@ namespace Pizza_Restaurant.Pages
     public class OrderModel : PageModel
     {
         private readonly IOrderService _orderService;
-        public OrderModel(IOrderService orderService)
+        private readonly ISubcriptionService _subcriptionService;
+        public OrderModel(IOrderService orderService , ISubcriptionService subcriptionService)
         {
             _orderService = orderService;
+            _subcriptionService = subcriptionService;
         }
 
 
@@ -21,10 +23,23 @@ namespace Pizza_Restaurant.Pages
         {
 
         }
-        public void OnPost()
+        public IActionResult OnPost()
         {
-            var newOrder = Order.ToDomainModel();
-            _orderService.Create(newOrder);
+            if (ModelState.IsValid)
+            {
+                var newOrder = Order.ToDomainModel();
+                _orderService.Create(newOrder);
+
+                return RedirectToPage("ConfirmationPage", "OrderCompleted");
+            }
+            return Page();
+        }
+        public  IActionResult OnPostSubscribe(string email)
+        {
+            _subcriptionService.Create(email);
+
+            return RedirectToPage("ConfirmationPage", "SubscriptionCompleted");
+
         }
     }
 }

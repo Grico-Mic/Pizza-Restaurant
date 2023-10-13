@@ -9,6 +9,6 @@ namespace Pizza_Restaurant.Repositories.Interfaces
     public interface IMenuItemRepository
     {
         List<MenuItem> GetAll();
-        MenuItem GetById(int id);
+        MenuItem GetBySlug(string slug);
     }
 }

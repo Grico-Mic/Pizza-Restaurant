@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Pizza_Restaurant.Pages
 {
-    public class IndexModel : PageModel
+    public class HomeModel : PageModel
     {
         //private readonly ILogger<IndexModel> _logger;
 
@@ -18,7 +18,7 @@ namespace Pizza_Restaurant.Pages
 
         private readonly IOfferService _offerService;
 
-        public IndexModel(IOfferService offerService)
+        public HomeModel(IOfferService offerService)
         {
             _offerService = offerService;
         }

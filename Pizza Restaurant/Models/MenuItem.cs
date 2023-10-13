@@ -19,5 +19,7 @@ namespace Pizza_Restaurant.Models
         public string Currency { get; set; }
         [Required]
         public DateTime DateCreated { get; set; }
+        [Required]
+        public string Slug { get; set; }
     }
 }

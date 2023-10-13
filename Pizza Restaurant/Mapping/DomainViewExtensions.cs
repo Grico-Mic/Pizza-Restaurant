@@ -24,11 +24,14 @@ namespace Pizza_Restaurant.Mapping
                 ImageURL = entity.ImageURL,
                 Descripton = entity.Description,
                 Price = entity.Price,
-                Currency = entity.Currency
+                Currency = entity.Currency,
+                Slug = entity.Slug
 
             };
         }
 
        
+
+
     }
 }

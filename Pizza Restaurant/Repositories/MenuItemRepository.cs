@@ -21,9 +21,9 @@ namespace Pizza_Restaurant.Repositories
             return _dbContext.MenuItems.ToList();
         }
 
-        public MenuItem GetById(int id)
+        public MenuItem GetBySlug(string slug)
         {
-            return _dbContext.MenuItems.FirstOrDefault(x => x.Id == id);
+            return _dbContext.MenuItems.FirstOrDefault(x => x.Slug == slug);
         }
     }
 }

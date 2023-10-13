@@ -17,9 +17,9 @@ namespace Pizza_Restaurant.Services
             return _menuItemRepository.GetAll();
         }
 
-        public MenuItem GetById(int id)
+        public MenuItem GetBySlug(string slug)
         {
-            return _menuItemRepository.GetById(id);
+            return _menuItemRepository.GetBySlug(slug);
         }
     }
 }

@@ -28,18 +28,26 @@ namespace Pizza_Restaurant
                 options.UseSqlServer(Configuration.GetConnectionString("PizzaRestaurantDb"));
             });
 
-            services.AddRazorPages();
+            //services.AddRazorPages();
+
+            services.AddRazorPages().AddRazorPagesOptions(options =>
+            {
+                //options.RootDirectory = "/Views";
+                options.Conventions.AddPageRoute("/Home", "");
+            });
 
             //services
             services.AddTransient<IOfferService, OfferService>();
             services.AddTransient<IMenuItemService, MenuItemService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<ISubcriptionService, SubcriptionService>();
 
 
             //repositories
             services.AddTransient<IOffersRepository, OffersRepository>();
             services.AddTransient<IMenuItemRepository, MenuItemRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<ISubcriptionRepository, SubcriptionRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

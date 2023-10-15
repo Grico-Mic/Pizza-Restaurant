@@ -1,9 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Pizza_Restaurant.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace Pizza_Restaurant.Models
+namespace Pizza_Restaurant.ViewModels
 {
-    public class Order
+    public class OrdersListViewModel
     {
         public int Id { get; set; }
         [Required]
@@ -16,9 +16,6 @@ namespace Pizza_Restaurant.Models
         public string Phone { get; set; }
         [Required]
         public string Message { get; set; }
-        [Required]
-        [Column (TypeName = "Varchar(24)")]
         public OrderStatus Status { get; set; }
-
     }
 }

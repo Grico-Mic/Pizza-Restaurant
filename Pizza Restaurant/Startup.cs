@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,7 +29,11 @@ namespace Pizza_Restaurant
                 options.UseSqlServer(Configuration.GetConnectionString("PizzaRestaurantDb"));
             });
 
-            //services.AddRazorPages();
+            services.AddDefaultIdentity<IdentityUser>()
+            .AddEntityFrameworkStores<PizzaRestaurantDbContex>()
+            .AddDefaultTokenProviders();
+
+           
 
             services.AddRazorPages().AddRazorPagesOptions(options =>
             {
@@ -69,6 +74,7 @@ namespace Pizza_Restaurant
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -30,8 +30,18 @@ namespace Pizza_Restaurant.Mapping
             };
         }
 
-       
-
-
+        public static OrdersListViewModel ToViewModel(this Order entity)
+        {
+            return new OrdersListViewModel()
+            {
+                Id = entity.Id,
+                Name = entity.Name,
+                Surname = entity.Surname,
+                Address = entity.Address,
+                Phone = entity.Phone,
+                Message = entity.Message,
+                Status = entity.Status
+            };
+        }
     }
 }

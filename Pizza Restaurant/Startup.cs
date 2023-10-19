@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Pizza_Restaurant.Models;
 using Pizza_Restaurant.Repositories;
 using Pizza_Restaurant.Repositories.Interfaces;
 using Pizza_Restaurant.Services;
@@ -30,7 +31,7 @@ namespace Pizza_Restaurant
                 options.UseSqlServer(Configuration.GetConnectionString("PizzaRestaurantDb"));
             });
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<AplicationUser>()
             .AddEntityFrameworkStores<PizzaRestaurantDbContex>()
             .AddDefaultTokenProviders();
 

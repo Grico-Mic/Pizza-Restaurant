@@ -5,7 +5,7 @@ using Pizza_Restaurant.Models;
 
 namespace Pizza_Restaurant.Repositories
 {
-    public class PizzaRestaurantDbContex : IdentityDbContext<IdentityUser>
+    public class PizzaRestaurantDbContex : IdentityDbContext<AplicationUser>
     {
         public PizzaRestaurantDbContex(DbContextOptions<PizzaRestaurantDbContex> options) : base(options) { }
 

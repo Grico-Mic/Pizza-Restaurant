@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,17 +13,23 @@ namespace Pizza_Restaurant.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<AplicationUser> _userManager;
         private readonly SignInManager<AplicationUser> _signInManager;
-        
+        private readonly PizzaRestaurantDbContex _pizzaRestaurantDbContex;
+
+
 
         public IndexModel(
             UserManager<AplicationUser> userManager,
-            SignInManager<AplicationUser> signInManager)
+            SignInManager<AplicationUser> signInManager,
+            PizzaRestaurantDbContex pizzaRestaurantDbContex
+            )
+        
        
             
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            
+            _pizzaRestaurantDbContex = pizzaRestaurantDbContex;
+
         }
        
 
@@ -41,21 +48,26 @@ namespace Pizza_Restaurant.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            public string  Name { get; set; }
+            public string  Surname { get; set; }
+            public string  Address { get; set; }
         }
 
         private async Task LoadAsync(AplicationUser user)
         {
-            var userName = await _userManager.GetUserNameAsync(user);
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            
-          
            
-            Username = userName;
+            
+          var usersFromDb = _pizzaRestaurantDbContex.Users.FirstOrDefault(x => x.Email == user.Email);
+
+            Username = usersFromDb.UserName;
            
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = usersFromDb.PhoneNumber,
+                Name = usersFromDb.Name,
+                Surname = usersFromDb.Surname,
+                Address = usersFromDb.Address
             };
         }
 

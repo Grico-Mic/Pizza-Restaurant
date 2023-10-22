@@ -1,0 +1,45 @@
+﻿@page
+@model Pizza_Restaurant.Pages.Dashboard.MenuModel
+@{
+    ViewData["Title"] = "Menu";
+}
+
+
+<h2>Orders menu</h2>
+@if (@User.IsInRole("Admin"))
+{
+    <a class="btn btn-primary" asp-page="/Dashboard/OrdersList">All Orders</a>
+    <a class="btn btn-primary" asp-page-handler="PendingOrders" asp-page="/Dashboard/OrdersList">Pending Orders</a>
+    <a class="btn btn-primary" asp-page-handler="Processed" asp-page="/Dashboard/OrdersList">Processed orders</a>
+    <a class="btn btn-primary" asp-page-handler="Done" asp-page="/Dashboard/OrdersList">Done orders</a>
+}
+
+
+
+@if (User.IsInRole("Cook"))
+{
+    <a class="btn btn-primary" asp-page-handler="PendingOrders" asp-page="/Dashboard/OrdersList">Pending Orders</a>
+
+}
+
+
+
+
+@if (User.IsInRole("Delivery"))
+
+{
+    <a class="btn btn-primary" asp-page-handler="Processed" asp-page="/Dashboard/OrdersList">Processed orders</a>
+}
+
+
+
+<h2>Users</h2>
+
+<a class="btn btn-primary" asp-page="/Dashboard/UsersList">Users List</a>
+
+<h2>Offers</h2>
+
+<h2>MenuItems:</h2>
+
+
+

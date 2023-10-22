@@ -17,7 +17,7 @@ using Pizza_Restaurant.Models;
 
 namespace Pizza_Restaurant.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+    
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<AplicationUser> _signInManager;
@@ -77,6 +77,7 @@ namespace Pizza_Restaurant.Areas.Identity.Pages.Account
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)

@@ -7,6 +7,9 @@ namespace Pizza_Restaurant.Services.Interfaces
     {
         void Create(Order newOrder);
         List<Order> GetAll();
-        Order SetProcessed(int id);
+      
+        List<Order> GetStatus(OrderStatus orderStatus);
+      
+        void SetStatus(int id, OrderStatus status);
     }
 }

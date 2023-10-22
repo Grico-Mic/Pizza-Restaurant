@@ -27,6 +27,7 @@ namespace Pizza_Restaurant.Pages
         public List<OfferViewModel> Offers { get; set; }
         public void OnGet()
         {
+            var user = User;
             var offers = _offerService.GetAllValid();
             Offers = offers.Select(x => x.ToViewModel()).ToList();
         }

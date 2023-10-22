@@ -25,18 +25,23 @@ namespace Pizza_Restaurant.Services
             return _orderRepository.GetAll();
         }
 
-        public Order SetProcessed(int id)
+        public List<Order> GetStatus(OrderStatus orderStatus )
+        {
+            return _orderRepository.GetStatus(orderStatus);
+        }
+
+        
+
+        public void SetStatus(int id, OrderStatus status)
         {
             Order order = _orderRepository.GetById(id);
 
             if (order != null)
             {
-                order.Status = OrderStatus.Processed;
+                order.Status = status;
                 _orderRepository.Update(order);
             }
-            return order;
+           
         }
-
-        
     }
 }

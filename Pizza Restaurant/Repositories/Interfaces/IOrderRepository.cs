@@ -9,5 +9,6 @@ namespace Pizza_Restaurant.Repositories.Interfaces
         List<Order> GetAll();
         Order GetById(int id);
         void Update(Order order);
+        List<Order> GetStatus(OrderStatus orderStatus);
     }
 }

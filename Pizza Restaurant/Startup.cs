@@ -32,12 +32,14 @@ namespace Pizza_Restaurant
             });
 
             services.AddDefaultIdentity<AplicationUser>()
+            .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<PizzaRestaurantDbContex>()
             .AddDefaultTokenProviders();
 
             services.ConfigureApplicationCookie(options =>
             {
                 options.ExpireTimeSpan = TimeSpan.FromDays(30);
+                options.LoginPath = "/admin/login";
             });
 
             //services.Configure<IdentityOptions>(options => {

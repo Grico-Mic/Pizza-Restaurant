@@ -29,6 +29,11 @@ namespace Pizza_Restaurant.Repositories
             return _dbContext.Orders.FirstOrDefault(x => x.Id == id);
         }
 
+        public List<Order> GetStatus(OrderStatus orderStatus)
+        {
+            return _dbContext.Orders.Where(x => x.Status == orderStatus).ToList();
+        }
+
         public void Update(Order order)
         {
             _dbContext.Orders.Update(order);
